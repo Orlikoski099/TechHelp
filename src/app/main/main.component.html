@@ -1,0 +1,33 @@
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(!showMenu) ? 'dialog' : 'navigation'"
+      [mode]="(!showMenu) ? 'over' : 'side'" [opened]="(showMenu) === true">
+      <mat-nav-list>
+        <mat-toolbar>
+          <a mat-list-item (click)="menu()">Menu</a>
+        </mat-toolbar>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item (click)="userList()">Usuários</a>
+        <a mat-list-item (click)="colabList()">Colaboradores</a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item (click)="userInfo(userLogin)" >{{userLogin}}({{userName}})</a>
+        <a mat-list-item (click)="logout()">Sair</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+          *ngIf="!showMenu">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>Projeto_de_Treinamento_Front</span>
+      </mat-toolbar>
+      <div class="content">
+        <mat-card>
+          <router-outlet></router-outlet>
+        </mat-card>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
